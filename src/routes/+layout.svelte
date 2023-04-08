@@ -22,8 +22,8 @@
 
   $: $selectedRaceId && priceUpdates.listen({ id: $selectedRaceId });
 
-  function loadNext() {
-    invalidate("GetRace");
+  async function loadNext() {
+    await invalidate("GetRace");
   }
 </script>
 

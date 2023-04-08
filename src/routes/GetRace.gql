@@ -1,0 +1,47 @@
+query GetRace(
+  $id: ID!
+  $bookmakers: [String!]
+  $bookmakersWithFlucs: [String!]
+) {
+  race(id: $id) {
+    __typename
+    id
+    betfairMapping {
+      win
+      place
+    }
+    meeting {
+      __typename
+      id
+      track
+      location
+      type
+      date
+    }
+    name
+    number
+    runners {
+      __typename
+      id
+      number
+      name
+      trainerName
+      riderName
+      bookmakerMarkets(
+        bookmakers: $bookmakers
+        bookmakersWithFlucs: $bookmakersWithFlucs
+      ) {
+        __typename
+        id
+        bookmaker
+        fixedWin {
+          flucs {
+            price
+          }
+          openingPrice
+          price
+        }
+      }
+    }
+  }
+}

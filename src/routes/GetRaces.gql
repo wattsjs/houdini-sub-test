@@ -1,0 +1,28 @@
+query GetRaces($dateFrom: String!, $dateTo: String!, $andDates: [String!]) {
+  races(dateFrom: $dateFrom, dateTo: $dateTo, andDates: $andDates)
+    @list(name: "All_Races") {
+    __typename
+    id
+    meeting {
+      __typename
+      id
+      location
+      track
+      type
+      date
+    }
+    name
+    number
+    status
+    distance
+    startTime
+    runners {
+      __typename
+      id
+      name
+      number
+      trainerName
+      riderName
+    }
+  }
+}

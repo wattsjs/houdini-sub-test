@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { invalidate } from "$app/navigation";
   import { graphql } from "$houdini";
   import { selectedRaceId } from "../stores";
 
@@ -20,7 +21,12 @@
   $: $priceUpdates.data?.priceUpdates && updateCount++;
 
   $: $selectedRaceId && priceUpdates.listen({ id: $selectedRaceId });
+
+  function loadNext() {
+    invalidate("GetRace");
+  }
 </script>
 
+<button on:click={loadNext}>Load Next</button>
 <span>Handled Updates: {updateCount}</span>
 <slot />
